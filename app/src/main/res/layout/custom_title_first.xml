@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
-              android:padding="6dp"
+              android:padding="4dp"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
 
@@ -12,49 +12,49 @@
 
     <ImageButton
         android:id="@+id/btn_info_in_MainActivity"
-        android:layout_marginLeft="4dp"
+        android:layout_marginLeft="0dp"
         android:background="@drawable/ic_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:ignore="ContentDescription"/>
 
     <LinearLayout
-        android:layout_weight="1"
-        android:layout_width="0dp"
+        android:layout_width="230dp"
         android:orientation="horizontal"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingLeft="2dp">
 
         <TextView
             android:id="@+id/textView_title_map"
-            android:layout_weight="1"
             android:gravity="center"
             android:textColor="@drawable/tv_transp_selector"
             android:text="@string/map"
-            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:layout_width="110dp"
             android:layout_height="match_parent"/>
 
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:layout_marginBottom="2dp"
-            android:layout_marginTop="2dp"
-            android:background="#707070"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/grey"
             />
 
         <TextView
-            android:layout_weight="1"
             android:gravity="center"
             android:id="@+id/textView_title_list"
             android:textColor="@drawable/tv_transp_selector"
             android:text="@string/list"
-            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:layout_width="110dp"
             android:layout_height="match_parent"/>
 
     </LinearLayout>
 
     <ImageButton
         android:id="@+id/btn_search_in_MainActivity"
-        android:layout_marginRight="4dp"
+        android:layout_marginRight="0dp"
         android:background="@drawable/ic_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>

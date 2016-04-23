@@ -22,7 +22,6 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <include layout="@layout/custom_title_first"/>
 
             </android.support.v7.widget.Toolbar>
@@ -43,7 +42,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginRight="5dp"
             fab:menu_icon="@drawable/ic_star"
-            fab:menu_colorNormal="#2b2a2b"
+            fab:menu_colorNormal="#FFFFFF"
             fab:menu_colorPressed="#454444"
             fab:menu_colorRipple="#6a6b6b">
 
