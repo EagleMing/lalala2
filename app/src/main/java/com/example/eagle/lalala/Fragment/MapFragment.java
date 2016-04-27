@@ -3,6 +3,7 @@ package com.example.eagle.lalala.Fragment;
 import android.graphics.Color;
 import android.location.LocationListener;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -16,6 +17,7 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps2d.AMap;
+import com.amap.api.maps2d.CameraUpdateFactory;
 import com.amap.api.maps2d.LocationSource;
 import com.amap.api.maps2d.MapView;
 import com.amap.api.maps2d.model.BitmapDescriptorFactory;
@@ -49,6 +51,7 @@ public class MapFragment extends Fragment implements LocationSource,
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        mGdmapview.onCreate(savedInstanceState);
+
     }
 
     @Nullable
@@ -57,6 +60,8 @@ public class MapFragment extends Fragment implements LocationSource,
         View v = inflater.inflate(R.layout.frag_map, container, false);
         ButterKnife.bind(this, v);
         mGdmapview.onCreate(savedInstanceState);
+        init();
+        handler.post(task);//立即调用
         return v;
     }
 
@@ -91,9 +96,21 @@ public class MapFragment extends Fragment implements LocationSource,
         aMap.setLocationSource((LocationSource) this);// 设置定位监听
         aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
         aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
-        aMap.getUiSettings().setScaleControlsEnabled(true);
-        //aMap.setMyLocationType()
+        aMap.getUiSettings().setScaleControlsEnabled(true);//显示比例尺
+        aMap.moveCamera(CameraUpdateFactory.zoomTo(aMap.getMaxZoomLevel()));//自动放大到当前最大比例尺
+
     }
+
+    //设置定时循环执行任务
+    private Handler handler = new Handler();
+
+    private Runnable task =new Runnable() {
+        public void run() {
+            // TODOAuto-generated method stub
+            handler.postDelayed(this,2*1000);//设置延迟时间，此处是2秒
+            aMap.setMyLocationEnabled(true);
+        }
+    };
 
 
 
@@ -104,6 +121,8 @@ public class MapFragment extends Fragment implements LocationSource,
     public void onResume() {
         super.onResume();
         mGdmapview.onResume();
+        init();
+        handler.post(task);
     }
 
     /**

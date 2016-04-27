@@ -8,19 +8,19 @@
         <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
         <!--<item name="colorAccent">@color/colorAccent</item>-->
         <!--导航栏底色-->
-        <item name="colorPrimary">@color/accent_material_dark</item>
+        <item name="colorPrimary">#FFFFFF</item>
         <!--状态栏底色-->
-        <item name="colorPrimaryDark">@color/accent_material_light</item>
+        <item name="colorPrimaryDark">#FFFFFF</item>
         <!--导航栏上的标题颜色-->
-        <item name="android:textColorPrimary">@android:color/black</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
         <!--Activity窗口的颜色-->
-        <item name="android:windowBackground">@color/material_blue_grey_800</item>
+        <item name="android:windowBackground">@color/blue</item>
         <!--按钮选中或者点击获得焦点后的颜色-->
-        <item name="colorAccent">#00ff00</item>
+        <item name="colorAccent">#c5c5c5</item>
         <!--和 colorAccent相反，正常状态下按钮的颜色-->
-        <item name="colorControlNormal">#ff0000</item>
+        <item name="colorControlNormal">#ffffff</item>
         <!--Button按钮正常状态颜色-->
-        <item name="colorButtonNormal">@color/accent_material_light</item>
+        <item name="colorButtonNormal">#98accd</item>
         <!--EditText 输入框中字体的颜色-->
         <item name="editTextColor">@android:color/white</item>
 
@@ -118,6 +118,7 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
 
 
 </resources>

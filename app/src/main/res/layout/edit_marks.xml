@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="12dp">
+    android:layout_height="match_parent">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:background="@color/blue"
+        android:layout_height="wrap_content">
+        <include layout="@layout/edit_title"/>
+    </android.support.v7.widget.Toolbar>
 
     <EditText
         android:id="@+id/edit_marks_name"
@@ -22,8 +28,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:linksClickable="false"
-            android:hint="@string/hint_edit"/>
+            android:hint="@string/hint_edit"
+            android:textColorHint="@color/grey"/>
     </ScrollView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp"
+        android:background="#ffffff"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="105dp"
@@ -36,7 +50,7 @@
             android:scaleType="fitXY"
             android:clickable="true"
             android:src="@drawable/add4"
-            android:background="#ffffff"
+            android:background="@color/transparent"
             android:contentDescription="@string/image_btn_add" />
     </LinearLayout>
     <TextView
@@ -44,6 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
+        android:textColor="@color/white"
         android:text="这里是坐标！！"/>
 
     <ScrollView
@@ -63,16 +78,19 @@
                     android:id="@+id/radiobtn_public"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     android:text="@string/radio_public"/>
                 <RadioButton
                     android:id="@+id/radiobtn_private"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     android:text="@string/radio_private"/>
                 <RadioButton
                     android:id="@+id/radiobtn_some"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     android:text="@string/radio_some"/>
 
             </RadioGroup>
