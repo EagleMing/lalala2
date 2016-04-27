@@ -38,16 +38,6 @@
                     android:textColor="@color/color_8290AF"
                     android:textSize="15sp"/>
 
-                <TextView
-                    android:id="@+id/urlTipTv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:text="分享了一个连接"
-                    android:singleLine="true"
-                    android:ellipsize="end"
-                    android:textColor="@color/color_aeaeae"
-                    android:textSize="14sp"/>
             </LinearLayout>
 
             <TextView
@@ -58,12 +48,6 @@
                 android:paddingTop="5dip"
                 android:textColor="@color/color_232323"
                 android:textSize="14sp"/>
-            <!--&lt;!&ndash; 不同的地方 &ndash;&gt;-->
-            <!--<ViewStub-->
-                <!--android:id="@+id/linkOrImgViewStub"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--/>-->
 
             <ImageView
                 android:id="@+id/imgInLv"
