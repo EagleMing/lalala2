@@ -1,13 +1,11 @@
-package com.example.eagle.lalala.Activity;
+package com.example.eagle.lalala;
 
 import android.support.v4.app.Fragment;
-
-import com.example.eagle.lalala.InfoFragment;
 
 /**
  * Created by eagle on 2016/4/13.
  */
-public class InfoActivity extends SingleFragmentActivity {
+public class InfoActivity extends SingleFragmentActivity{
 
     @Override
     protected Fragment creatFragment() {

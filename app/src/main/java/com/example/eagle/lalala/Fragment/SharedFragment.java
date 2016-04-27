@@ -1,5 +1,7 @@
-package com.example.eagle.lalala;
+package com.example.eagle.lalala.Fragment;
 
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,6 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.eagle.lalala.R;
 import com.example.eagle.lalala.adapter.CircleAdapter;
 import com.example.eagle.lalala.bean.CircleItem;
 import com.example.eagle.lalala.bean.CommentConfig;
@@ -27,6 +30,7 @@ import com.example.eagle.lalala.mvp.view.ICircleView;
 import com.example.eagle.lalala.utils.CommonUtils;
 import com.example.eagle.lalala.utils.DatasUtil;
 import com.example.eagle.lalala.widgets.CommentListView;
+import com.example.neilhy.pulltorefresh_lib.PtrDefaultHandler;
 import com.example.neilhy.pulltorefresh_lib.PtrFrameLayout;
 import com.example.neilhy.pulltorefresh_lib.PtrHandler;
 import com.example.neilhy.pulltorefresh_lib.header.StoreHouseHeader;
@@ -69,16 +73,18 @@ public class SharedFragment extends ListFragment implements  ICircleView {
     LinearLayout mEditTextBody;;
     private PtrFrameLayout mPtrFrameLayout;
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPresenter = new CirclePresenter(this);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.frag_shared, container, false);
         ButterKnife.bind(this, v);
+        mPresenter = new CirclePresenter(this);
         mCircleLv = (ListView) v.findViewById(android.R.id.list);
         mPtrFrameLayout = (PtrFrameLayout) v.findViewById(R.id.FrameInStrFrag);
         initView();
@@ -106,7 +112,7 @@ public class SharedFragment extends ListFragment implements  ICircleView {
         mPtrFrameLayout.setPtrHandler(new PtrHandler() {
             @Override
             public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
-                return true;
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, mCircleLv, header);
             }
 
             @Override
@@ -123,8 +129,6 @@ public class SharedFragment extends ListFragment implements  ICircleView {
 
 
 
-
-       // mCircleLv.setOnScrollListener(new SwpipeListViewOnScrollListener(mSwipeRefreshLayout));
         mCircleLv.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -138,11 +142,6 @@ public class SharedFragment extends ListFragment implements  ICircleView {
             }
         });
 
-//        mSwipeRefreshLayout.setOnRefreshListener(this);
-//        mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
-//                android.R.color.holo_orange_light, android.R.color.holo_red_light);
-
-        // mAdapter = new CircleAdapter(getActivity());
         mAdapter = new CircleAdapter(getActivity());
         mAdapter.setCirclePresenter(mPresenter);
         mCircleLv.setAdapter(mAdapter);
@@ -370,19 +369,6 @@ public class SharedFragment extends ListFragment implements  ICircleView {
         }
         return result;
     }
-
-//    @Override
-//    public void onRefresh() {
-//
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                loadData();
-//                mSwipeRefreshLayout.setRefreshing(false);
-//            }
-//        }, 2000);
-//
-//    }
 
     private void loadData() {
         List<CircleItem> datas = DatasUtil.createCircleDatas();
