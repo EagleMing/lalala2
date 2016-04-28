@@ -3,7 +3,6 @@ package com.example.eagle.lalala.Fragment;
 import android.graphics.Color;
 import android.location.LocationListener;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -61,7 +60,6 @@ public class MapFragment extends Fragment implements LocationSource,
         ButterKnife.bind(this, v);
         mGdmapview.onCreate(savedInstanceState);
         init();
-        handler.post(task);//立即调用
         return v;
     }
 
@@ -101,17 +99,6 @@ public class MapFragment extends Fragment implements LocationSource,
 
     }
 
-    //设置定时循环执行任务
-    private Handler handler = new Handler();
-
-    private Runnable task =new Runnable() {
-        public void run() {
-            // TODOAuto-generated method stub
-            handler.postDelayed(this,2*1000);//设置延迟时间，此处是2秒
-            aMap.setMyLocationEnabled(true);
-        }
-    };
-
 
 
     /**
@@ -122,7 +109,6 @@ public class MapFragment extends Fragment implements LocationSource,
         super.onResume();
         mGdmapview.onResume();
         init();
-        handler.post(task);
     }
 
     /**
@@ -156,7 +142,7 @@ public class MapFragment extends Fragment implements LocationSource,
     /**
      * 定位成功后回调函数
      */
-    //@Override
+    @Override
     public void onLocationChanged(AMapLocation amapLocation) {
         if (mListener != null && amapLocation != null) {
             if (amapLocation != null
@@ -172,7 +158,7 @@ public class MapFragment extends Fragment implements LocationSource,
     /**
      * 激活定位
      */
-    //@Override
+    @Override
     public void activate(LocationSource.OnLocationChangedListener listener) {
         mListener = listener;
         if (mlocationClient == null) {
@@ -195,7 +181,7 @@ public class MapFragment extends Fragment implements LocationSource,
     /**
      * 停止定位
      */
-    //@Override
+    @Override
     public void deactivate() {
         mListener = null;
         if (mlocationClient != null) {
