@@ -19,6 +19,13 @@
     <color name="darkgrey"> #999999</color>
 
     <color name="white"> #FFFFFF</color>
+    <color name="red"> #FF3300</color>
+    <color name="green">#CCFF99</color>
+    <color name="gary">#333333</color>
+    <color name="gray_lite">#c5c5c5</color>
+    <color name="black2">#ffeeeeee</color>
+    <color name="black1">#7A7E83</color>
+    <color name="itemlist">#f4f4f4</color>
     <color name="red"> #F22900</color>
     <color name="green">#9dd01e</color>
     <color name="blue">#1d3256</color>

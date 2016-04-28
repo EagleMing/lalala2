@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"/>
 
         <ImageView
+            android:id="@+id/login_iv"
                    android:layout_width="wrap_content"
                    android:layout_height="72dp"
                    android:src="@mipmap/ic_launcher"

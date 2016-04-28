@@ -203,8 +203,13 @@ public class SharedFragment extends ListFragment implements  ICircleView {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_recommend:
+              //  CommonUtils.changeFrag(getActivity(),);
+
                 break;
             case R.id.btn_focus:
+
+
+
                 break;
         }
     }

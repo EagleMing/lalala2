@@ -38,6 +38,7 @@ import com.example.eagle.lalala.PictureWork.TakePicture;
 import com.example.eagle.lalala.R;
 import com.example.eagle.lalala.Fragment.SharedFragment;
 import com.example.eagle.lalala.Service.WorkWithDatabase;
+import com.example.eagle.lalala.utils.CommonUtils;
 import com.example.neilhy.floatingbutton_library.FloatingActionButton;
 import com.example.neilhy.floatingbutton_library.FloatingActionMenu;
 
@@ -85,7 +86,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private File imageFile;
 
     private Fragment mMapFrgment;
-    private Fragment mListFragment;
+    private Fragment mRecommendedFragment;
+    private Fragment mFocusedFragment;
 
     private WorkWithDatabase.AccessDatabaseBinder accessDatabaseBinder;//对后台的绑定
     private ServiceConnection connection;
@@ -103,18 +105,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void init() {
         mMapFrgment = new MapFragment();
-        mListFragment = new SharedFragment();
+        mRecommendedFragment = new SharedFragment();
+        mFocusedFragment = new SharedFragment();
+
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.single_frag_container,mListFragment,"list_frag")
+                .add(R.id.single_frag_container,mRecommendedFragment,"recommended_frag")
                 .add(R.id.single_frag_container,mMapFrgment,"map_frag")
-                .hide(mListFragment)
+                .add(R.id.single_frag_container,mFocusedFragment,"focused_frag")
+                .hide(mRecommendedFragment).hide(mFocusedFragment)
                 .commit();
 
         RelativeLayout drawerHeaderLayout= (RelativeLayout) mNavigationView.getHeaderView(0);
-        mUserIcon= (ImageView) drawerHeaderLayout.getChildAt(0);//一定要有这种形式得到header的布局元素，不然会报错nullpoint
+        mUserIcon= (ImageView) drawerHeaderLayout.getChildAt(0);
         mUserName = (TextView) drawerHeaderLayout.getChildAt(1);
-//        mUserName = (TextView) findViewById(R.id.drawer_header_name);//报错
-//        mUserIcon = (ImageView) findViewById(R.id.drawer_header_icon);
         mUserIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -185,10 +188,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mUserName.setText(username);
     }
 
-    @Override
-    protected Fragment creatFragment() {
-        return new MapFragment();
-    }
+//    @Override
+//    protected Fragment creatFragment() {
+//        return new MapFragment();
+//    }
 
     private void takePhoto(){
         imageFile= HandlePicture.createFileForPhoto();//创建图片路径
@@ -201,11 +204,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.textView_title_map:
-                changeFrag(mListFragment,mMapFrgment);
+                CommonUtils.changeFrag(MainActivity.this,mRecommendedFragment,mMapFrgment);
                 //changeFrag(getSupportFragmentManager().findFragmentByTag("list_frag"),getSupportFragmentManager().findFragmentByTag("map_frag"));
                 break;
             case R.id.textView_title_list:
-                changeFrag(mMapFrgment,mListFragment);
+                CommonUtils.changeFrag(MainActivity.this,mMapFrgment,mRecommendedFragment);
                 //changeFrag(getSupportFragmentManager().findFragmentByTag("map_frag"),getSupportFragmentManager().findFragmentByTag("list_frag"));
                 break;
             case R.id.btn_info_in_MainActivity:
@@ -224,13 +227,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         menuButton.close(true);
     }
 
-    private void changeFrag(Fragment from,Fragment to) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        if(!to.isAdded())
-            transaction.hide(from).add(R.id.single_frag_container, to).commit();
-        else
-            transaction.hide(from).show(to).commit();
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
